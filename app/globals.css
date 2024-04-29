@@ -2,32 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+    @font-face {
+        font-family: 'Tungsten';
+        src: url('/fonts/tungsten/Tungsten-Semibold.woff2') format('woff2'),
+            url('/fonts/tungsten/Tungsten-Semibold.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
+    
+    @font-face {
+        font-family: 'Tungsten';
+        src: url('/fonts/tungsten/Tungsten-Bold.woff2') format('woff2'),
+            url('/fonts/tungsten/Tungsten-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    body {
+        user-select: none;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .logo, .slide-content {
+        font-family: 'Tungsten', sans-serif;
+    }
+
+    .slider-control-bullets span {
+        @apply w-[5px] h-[8px] border border-white rounded-sm block transition-all relative
+    }
+
+    .slider-control-bullets span::after {
+        content: '';
+        transition: all .6s cubic-bezier(0.23, 1, 0.320, 1);
+        @apply w-0 h-full bg-white absolute top-0 left-0
+    }
+
+    .slider-control-bullets span.active::after {
+        @apply w-full
+    }
+
+    .layer-blur {
+        -webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+    }
+
+    .layer .slide-next {
+        @apply opacity-0
+    }
+
+    .slide-title-stroke {
+        color: rgba(255, 255, 255, 0);
+        -webkit-text-stroke: 1px #fff;
+        -moz-text-stroke: 1px #fff;
+        -o-text-stroke: 1px #fff;
+        text-stroke: 1px #fff;
+        text-fill-color: transparent; 
+    }
+
+    .slide-content span {
+        white-space: nowrap;
+    }
+
+    .slider-control {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    .info .mask {
+        @apply flex gap-1 h-[12px] overflow-hidden 
+    }
+
+    .info .mask span {
+        @apply text-[10px] leading-[12px] tracking-[.8px] text-white uppercase
+    }
+
+    /* active project states */
+    .slider .slide-active {
+        @apply translate-y-[100px] opacity-0
+    }
+
+    .slider .slide-active .slide-content {
+        @apply translate-y-[100px] opacity-0
+    }
+    
+    .info .slide-active {
+        position: relative;
+        z-index: 3;
+    }
+
+    .info .slide-active .mask span {
+        @apply translate-y-[100%]
+    }
+
+    .info a {
+        @apply translate-y-[30px] opacity-0
+    }
+
+    /* next project states */
+    .slider .slide-next img {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+
+    .slider .slide-next .slide-title {
+        @apply opacity-0
+    }
+
+    .slider .slide-next .slide-content {
+        @apply opacity-0
+    }
+
+    .info .slide-next {
+        @apply absolute top-0 left-0 pointer-events-none
+    }
+
+    .info .slide-next .mask span {
+        @apply translate-y-[100%]
+    }
+
+    .prev .slide-next {
+        @apply absolute top-0 left-0 pointer-events-none
+    }
+
+    .prev .slide-next img {
+        clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+    }
+
+    .next .slide-next {
+        @apply absolute top-0 left-0 pointer-events-none
+    }
+
+    .next .slide-next img {
+        clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
