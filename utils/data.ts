@@ -53,8 +53,13 @@ export const presentation: Presentation = {
 
 export const app: App = {
     slides: [],
+    fillPercentage: 0,
     totalImages: 0,
     currentContentIndex: 0,
+    isAnimating: false,
+    isInitial: true,
     setSlides: () => {},
-    setCurrentContentIndex: () => {}
+    setCurrentContentIndex: () => {},
+    setIsAnimating: () => {},
+    setFillPercentage: () => {}
 }
