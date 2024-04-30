@@ -23,18 +23,38 @@ export function Prev() {
         setFillPercentage
     } = useContext(AppContext)
 
-    const [prevSlides, setPrevSlides] = useState([presentation.slides[4]])
+    const [prevSlides, setPrevSlides] = useState([presentation.slides[totalImages - 1]])
 
     useGSAP(() => {
         if(isInitial) return
 
-        gsap.to('.prev .slide-next img', {
-            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        gsap.set('.prev .slide-active img', { autoAlpha: 0 })
+        gsap.to('.prev .slide-active', {
+            scale: .95,
             duration: 1,
             ease: 'power4.out',
-            delay: .3
+        })
+        gsap.to('.prev .slide-active img', {
+            autoAlpha: 1,
+            duration: 1,
+            ease: 'power4.out',
+            delay: .2
+        })
+        gsap.to('.prev .slide-active', {
+            scale: 1,
+            duration: 1,
+            ease: 'power4.out',
+            delay: .2
         })
     }, { dependencies: [slides], revertOnUpdate: true })
+
+    useEffect(() => {
+        if(isInitial) return
+
+        setPrevSlides([
+            presentation.slides[currentContentIndex == 0 ? totalImages - 1 : (currentContentIndex - 1) % totalImages],
+        ])
+    }, [slides])
 
     function handlePrev() {
         if(isAnimating) return
@@ -49,18 +69,18 @@ export function Prev() {
         setCurrentContentIndex(currentContentIndex - 1 == -1 ? totalImages - 1 : (currentContentIndex - 1) % totalImages)
 
         if(fillPercentage == 0) {
-            setFillPercentage(100 - 20)
+            setFillPercentage(100 - (100 / totalImages))
         }
 
         if (fillPercentage > 0) {
-            setFillPercentage((prev: number) => prev - 20)
+            setFillPercentage((prev: number) => prev - (100 / totalImages))
         }
     }
 
     return(
         <div onClick={ handlePrev } className="prev cursor-pointer fixed bottom-4 left-4 z-[3]">
             { prevSlides.map((slide: Slide, index: number) => (
-                <div key={ index } className={ `${ index == 0 ? 'slide-active' : 'slide-next' } w-[248px] h-[330px] relative` }>
+                <div key={ index } className={ `${ index == 0 ? 'slide-active' : 'slide-next' } bg-black w-[248px] h-[330px] relative rounded-[10px]` }>
                     <div className="slide-image absolute flex items-center justify-center w-full h-full top-0 left-0 border-black border rounded-[10px] overflow-hidden">
                         <Image 
                             src={ slide?.image }
