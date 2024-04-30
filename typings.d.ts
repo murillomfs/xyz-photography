@@ -31,3 +31,5 @@ interface App {
     handlePrev: any,
     handleNext: any
 }
+
+declare module 'preload-it';

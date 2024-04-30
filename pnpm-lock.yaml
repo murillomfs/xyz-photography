@@ -14,6 +14,9 @@ dependencies:
   next:
     specifier: 14.2.2
     version: 14.2.2(react-dom@18.2.0)(react@18.2.0)
+  preload-it:
+    specifier: ^1.4.0
+    version: 1.4.0
   react:
     specifier: ^18
     version: 18.2.0
@@ -2231,6 +2234,10 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.2.0
     dev: true
+
+  /preload-it@1.4.0:
+    resolution: {integrity: sha512-eajVQ5/peLtsUU4TjYz3xmL/hDnMVs5BMjl3Pv6/d9uDy8ztpCE8iI3yNjXxmIR+8y2YJGaOvrpIadUdVxFzsg==}
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
