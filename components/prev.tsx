@@ -14,13 +14,8 @@ export function Prev() {
         slides, 
         currentContentIndex, 
         totalImages, 
-        setSlides, 
-        isAnimating,
-        isInitial,
-        setIsAnimating,
-        setCurrentContentIndex,
-        fillPercentage,
-        setFillPercentage
+        handlePrev,
+        isInitial
     } = useContext(AppContext)
 
     const [prevSlides, setPrevSlides] = useState([presentation.slides[totalImages - 1]])
@@ -55,27 +50,6 @@ export function Prev() {
             presentation.slides[currentContentIndex == 0 ? totalImages - 1 : (currentContentIndex - 1) % totalImages],
         ])
     }, [slides])
-
-    function handlePrev() {
-        if(isAnimating) return
-
-        setIsAnimating(true)
-        
-        setSlides([
-            presentation.slides[currentContentIndex == -1 ? totalImages - 1 : (currentContentIndex) % totalImages],
-            presentation.slides[currentContentIndex - 1 == -1 ? totalImages - 1 : (currentContentIndex - 1) % totalImages]
-        ])
-
-        setCurrentContentIndex(currentContentIndex - 1 == -1 ? totalImages - 1 : (currentContentIndex - 1) % totalImages)
-
-        if(fillPercentage == 0) {
-            setFillPercentage(100 - (100 / totalImages))
-        }
-
-        if (fillPercentage > 0) {
-            setFillPercentage((prev: number) => prev - (100 / totalImages))
-        }
-    }
 
     return(
         <div onClick={ handlePrev } className="prev cursor-pointer fixed bottom-4 left-4 z-[3]">

@@ -9,7 +9,7 @@ export const presentation: Presentation = {
             client: 'Vogue',
             month: 'Jun',
             year: '2019',
-            image: '/images/image01@2x.jpg',
+            image: '/images/image01@2x.webp',
             url: 'https://google.com'
         },
         {
@@ -18,7 +18,7 @@ export const presentation: Presentation = {
             client: 'Wild',
             month: 'Dec',
             year: '2019',
-            image: '/images/image02@2x.jpg',
+            image: '/images/image02@2x.webp',
             url: 'https://github.com'
         },
         {
@@ -27,7 +27,7 @@ export const presentation: Presentation = {
             client: 'Chanel',
             month: 'Feb',
             year: '2020',
-            image: '/images/image03@2x.jpg',
+            image: '/images/image03@2x.webp',
             url: 'https://adobe.com'
         },
         {
@@ -36,7 +36,7 @@ export const presentation: Presentation = {
             client: 'On',
             month: 'Apr',
             year: '2020',
-            image: '/images/image04@2x.jpg',
+            image: '/images/image04@2x.webp',
             url: 'https://awwwards.com'
         },
         {
@@ -45,7 +45,7 @@ export const presentation: Presentation = {
             client: 'Si',
             month: 'Dec',
             year: '2021',
-            image: '/images/image05@2x.jpg',
+            image: '/images/image05@2x.webp',
             url: 'https://apple.com'
         }
     ]
@@ -61,5 +61,7 @@ export const app: App = {
     setSlides: () => {},
     setCurrentContentIndex: () => {},
     setIsAnimating: () => {},
-    setFillPercentage: () => {}
+    setFillPercentage: () => {},
+    handlePrev: () => {},
+    handleNext: () => {}
 }

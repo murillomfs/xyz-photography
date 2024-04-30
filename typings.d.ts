@@ -27,5 +27,7 @@ interface App {
     setFillPercentage: Dispatch<SetStateAction<number>>
     setSlides: Dispatch<SetStateAction<Slide[]>>
     setCurrentContentIndex: Dispatch<SetStateAction<number>>
-    setIsAnimating: Dispatch<SetStateAction<boolean>>
-  }
+    setIsAnimating: Dispatch<SetStateAction<boolean>>,
+    handlePrev: any,
+    handleNext: any
+}

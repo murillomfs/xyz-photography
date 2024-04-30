@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useEffect, useState } from 'react'
+import React, { WheelEvent, createContext, useEffect, useState } from 'react'
 
 import { app, presentation } from '@/utils/data'
 
@@ -23,6 +23,61 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
         setIsInitial(false)
     }, [])
 
+    const [wheelTimeout, setWheelTimeout] = useState(false);
+
+    function handleWheel(event: WheelEvent) {
+        if (!wheelTimeout) {
+            if (event.deltaY < 0) {
+                handlePrev()
+            } else if (event.deltaY > 0) {
+                handleNext()
+            }
+
+            setWheelTimeout(true)
+            setTimeout(() => {
+                setWheelTimeout(false)
+            }, 2000)
+        }
+    }
+
+    function handlePrev() {
+        if(isAnimating) return
+
+        setIsAnimating(true)
+        
+        setSlides([
+            presentation.slides[currentContentIndex == -1 ? totalImages - 1 : (currentContentIndex) % totalImages],
+            presentation.slides[currentContentIndex - 1 == -1 ? totalImages - 1 : (currentContentIndex - 1) % totalImages]
+        ])
+
+        setCurrentContentIndex(currentContentIndex - 1 == -1 ? totalImages - 1 : (currentContentIndex - 1) % totalImages)
+
+        if(fillPercentage == 0) {
+            setFillPercentage(100 - (100 / totalImages))
+        }
+
+        if (fillPercentage > 0) {
+            setFillPercentage((prev: number) => prev - (100 / totalImages))
+        }
+    }
+
+    function handleNext() {
+        if(isAnimating) return
+
+        setIsAnimating(true)
+
+        setSlides([
+            presentation.slides[(currentContentIndex) % totalImages],
+            presentation.slides[(currentContentIndex + 1) % totalImages]
+        ])
+
+        setCurrentContentIndex((currentContentIndex + 1) % totalImages)
+
+        if (fillPercentage < 100) {
+            setFillPercentage((prev: number) => prev + (100 / totalImages))
+        }
+    }
+
     return (
         <AppContext.Provider value={{ 
             fillPercentage,
@@ -34,9 +89,13 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
             setSlides,
             setCurrentContentIndex,
             setIsAnimating,
-            setFillPercentage
+            setFillPercentage,
+            handlePrev,
+            handleNext
         }}>
-            { children }
+            <div onWheel={handleWheel}>
+                { children }
+            </div>
         </AppContext.Provider>
     )
 }

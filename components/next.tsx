@@ -14,13 +14,8 @@ export function Next() {
         slides, 
         currentContentIndex, 
         totalImages, 
-        setSlides, 
-        isAnimating,
-        isInitial,
-        setIsAnimating,
-        setCurrentContentIndex,
-        fillPercentage,
-        setFillPercentage
+        handleNext,
+        isInitial
     } = useContext(AppContext)
 
     const [nextSlides, setNextSlides] = useState([presentation.slides[1]])
@@ -55,23 +50,6 @@ export function Next() {
             presentation.slides[currentContentIndex == totalImages - 1 ? 0 : (currentContentIndex + 1) % totalImages]
         ])
     }, [slides])
-
-    function handleNext() {
-        if(isAnimating) return
-
-        setIsAnimating(true)
-
-        setSlides([
-            presentation.slides[(currentContentIndex) % totalImages],
-            presentation.slides[(currentContentIndex + 1) % totalImages]
-        ])
-
-        setCurrentContentIndex((currentContentIndex + 1) % totalImages)
-
-        if (fillPercentage < 100) {
-            setFillPercentage((prev: number) => prev + (100 / totalImages))
-        }
-    }
 
     return(
         <div onClick={ handleNext } className="next cursor-pointer fixed top-4 right-4 z-[3]">
