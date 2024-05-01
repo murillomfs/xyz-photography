@@ -14,8 +14,8 @@ export function Prev() {
         slides, 
         currentContentIndex, 
         totalImages, 
-        handlePrev,
-        isInitial
+        isInitial,
+        handlePrev
     } = useContext(AppContext)
 
     const [prevSlides, setPrevSlides] = useState([presentation.slides[totalImages - 1]])

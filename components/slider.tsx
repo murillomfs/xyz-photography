@@ -1,9 +1,9 @@
 'use client'
 
+import { useContext } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { useContext } from 'react'
 
 import { AppContext } from '@/contexts/app-context'
 
@@ -11,12 +11,8 @@ import { presentation } from '@/utils/data'
 
 export function Slider() {
     const { 
-        slides, 
-        setSlides, 
+        slides,  
         currentContentIndex, 
-        isAnimating,
-        setCurrentContentIndex, 
-        totalImages,
         setIsAnimating,
         isInitial
     } = useContext(AppContext)

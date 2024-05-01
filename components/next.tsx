@@ -14,8 +14,8 @@ export function Next() {
         slides, 
         currentContentIndex, 
         totalImages, 
-        handleNext,
-        isInitial
+        isInitial,
+        handleNext
     } = useContext(AppContext)
 
     const [nextSlides, setNextSlides] = useState([presentation.slides[1]])

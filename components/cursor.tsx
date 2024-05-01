@@ -5,8 +5,6 @@ import gsap from 'gsap'
 
 import { AppContext } from '@/contexts/app-context'
 
-import { presentation } from '@/utils/data'
-
 export function Cursor() {
     const { fillPercentage, setFillPercentage } = useContext(AppContext)
     
