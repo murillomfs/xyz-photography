@@ -1,6 +1,6 @@
 'use client'
 
-import React, { WheelEvent, createContext, useEffect, useState } from 'react'
+import React, { WheelEvent, createContext, useState } from 'react'
 
 import { app, presentation } from '@/utils/data'
 
