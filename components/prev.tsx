@@ -54,7 +54,7 @@ export function Prev() {
     return(
         <div onClick={ handlePrev } className="prev cursor-pointer fixed bottom-4 left-4 z-[3]">
             { prevSlides.map((slide: Slide, index: number) => (
-                <div key={ index } className={ `${ index == 0 ? 'slide-active' : 'slide-next' } bg-black w-[248px] h-[330px] relative rounded-[10px]` }>
+                <div key={ index } className={ `${ index == 0 ? 'slide-active' : 'slide-next' } bg-black w-[120px] h-[150px] md:w-[180px] md:h-[260px] lg:w-[250px] lg:h-[330px] relative rounded-[10px]` }>
                     <div className="slide-image absolute flex items-center justify-center w-full h-full top-0 left-0 border-black border rounded-[10px] overflow-hidden">
                         <Image 
                             src={ slide?.image }

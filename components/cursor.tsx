@@ -72,6 +72,8 @@ export function Cursor() {
                 setFillPercentage(0)
             }
         }, 600)
+
+        console.log(fillPercentage)
     }, [fillPercentage])
 
     useEffect(() => {
@@ -86,7 +88,7 @@ export function Cursor() {
         <>
             <div 
                 ref={ circle } 
-                className="fixed top-0 left-0 bg-[#fff] rounded-full pointer-events-none z-[6]" 
+                className="fixed top-0 left-0 opacity-0 md:opacity-100 bg-[#fff] rounded-full pointer-events-none z-[6]" 
                 style={{width: size, height: size, transition: 'all .3s ease-out' }}
             >
                 <svg ref={ progress } className="relative" width="42" height="42" viewBox="0 0 100 100">

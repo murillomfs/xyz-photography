@@ -12,7 +12,7 @@ export function Logo() {
             duration: .6,
             ease: 'power4.out',
             stagger: .1,
-            delay: 1.6
+            delay: .6
         }) 
     })
 

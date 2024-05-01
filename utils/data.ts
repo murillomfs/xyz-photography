@@ -58,9 +58,12 @@ export const app: App = {
     currentContentIndex: 0,
     isAnimating: false,
     isInitial: true,
+    init: false,
+    setInit: () => {},
     setSlides: () => {},
     setCurrentContentIndex: () => {},
     setIsAnimating: () => {},
+    setIsInitial: () => {},
     setFillPercentage: () => {},
     handlePrev: () => {},
     handleNext: () => {}

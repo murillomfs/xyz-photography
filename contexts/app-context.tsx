@@ -12,17 +12,9 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
     const [totalImages] = useState(presentation.slides.length)
     const [slides, setSlides] = useState([presentation.slides[0]])
     const [isAnimating, setIsAnimating] = useState(false)
+    const [init, setInit] = useState(false)
     const [isInitial, setIsInitial] = useState(true)
     const [wheelTimeout, setWheelTimeout] = useState(false)
-
-    useEffect(() => {
-        console.log(currentContentIndex)
-        if(isInitial) return
-    }, [currentContentIndex])
-
-    useEffect(() => {
-        setIsInitial(false)
-    }, [])
 
     function handleWheel(event: WheelEvent) {
         if (!wheelTimeout) {
@@ -89,9 +81,12 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
             currentContentIndex,
             isAnimating,
             isInitial,
+            init,
+            setInit,
             setSlides,
             setCurrentContentIndex,
             setIsAnimating,
+            setIsInitial,
             setFillPercentage,
             handlePrev,
             handleNext

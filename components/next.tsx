@@ -54,7 +54,7 @@ export function Next() {
     return(
         <div onClick={ handleNext } className="next cursor-pointer fixed top-4 right-4 z-[3]">
             { nextSlides.map((slide: Slide, index: number) => (
-                <div key={ index } className={ `${ index == 0 ? 'slide-active' : 'slide-next' } w-[248px] h-[330px] relative bg-black rounded-[10px]` }>
+                <div key={ index } className={ `${ index == 0 ? 'slide-active' : 'slide-next' } w-[120px] h-[150px] md:w-[180px] md:h-[260px] lg:w-[250px] lg:h-[330px] relative bg-black rounded-[10px]` }>
                     <div className="slide-image absolute flex items-center justify-center w-full h-full top-0 left-0 border-black border rounded-[10px] overflow-hidden">
                         <Image 
                             src={ slide?.image }
